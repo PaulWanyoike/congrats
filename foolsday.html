@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enter M-Pesa Number</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            text-align: center;
+            background: linear-gradient(45deg, #ffcc00, #ff6699);
+            padding: 20px;
+            animation: backgroundAnimation 5s infinite alternate;
+        }
+        @keyframes backgroundAnimation {
+            0% { background: linear-gradient(45deg, #ffcc00, #ff6699); }
+            100% { background: linear-gradient(45deg, #ff6699, #ffcc00); }
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            transition: transform 0.3s;
+        }
+        .container:hover {
+            transform: scale(1.05);
+        }
+        h1 {
+            color: #ff3300;
+            font-size: 28px;
+            text-shadow: 2px 2px yellow;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        p {
+            font-size: 18px;
+            color: #333;
+        }
+        input {
+            width: 80%;
+            padding: 8px;
+            margin: 10px 0;
+            border: 2px solid #ff3300;
+            border-radius: 5px;
+            font-size: 16px;
+            text-align: center;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .btn {
+            background: radial-gradient(circle, gold, orange);
+            color: black;
+            padding: 12px 25px;
+            border: none;
+            cursor: pointer;
+            font-size: 20px;
+            border-radius: 10px;
+            margin-top: 10px;
+            font-weight: bold;
+            transition: 0.3s;
+            animation: bounce 1.5s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .btn:hover {
+            background: radial-gradient(circle, orange, gold);
+            transform: scale(1.1);
+        }
+        .hidden-message {
+            display: none;
+            font-size: 26px;
+            font-weight: bold;
+            color: white;
+            margin-top: 20px;
+            text-align: center;
+            background: red;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+            text-shadow: 2px 2px black;
+            animation: shake 0.5s infinite, glow 1.5s infinite;
+        }
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+            100% { transform: translateX(0); }
+        }
+        @keyframes glow {
+            0% { box-shadow: 0 0 10px red; }
+            50% { box-shadow: 0 0 20px yellow; }
+            100% { box-shadow: 0 0 10px red; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="mpesaForm">
+        <h1>Enter Your M-Pesa Number</h1>
+        <p>To claim your KSH 50,000, enter your M-Pesa number below:</p>
+        <input type="text" id="mpesaNumber" placeholder="07XXXXXXXX" maxlength="10">
+        <button class="btn" onclick="submitNumber()">Submit</button>
+    </div>
+
+    <div class="container" id="prankPage" style="display: none;">
+        <h1>🎉 Congratulations! 🎉</h1>
+        <p>You have won <strong>KSH 50,000!</strong></p>
+        <p>Click the button below to claim your prize.</p>
+        <button class="btn" onclick="revealPrank()">Claim Now</button>
+        <p class="hidden-message" id="prankMessage">😂 🎉 Happy April Fools' Day! 🎉 😂</p>
+    </div>
+    
+    <script>
+        function submitNumber() {
+            var number = document.getElementById("mpesaNumber").value;
+            if (number.length === 10 && number.startsWith("07")) {
+                document.getElementById("mpesaForm").style.display = "none";
+                document.getElementById("prankPage").style.display = "block";
+            } else {
+                alert("Please enter a valid M-Pesa number!");
+            }
+        }
+        
+        function revealPrank() {
+            document.getElementById("prankMessage").style.display = "block";
+        }
+    </script>
+</body>
+</html>
